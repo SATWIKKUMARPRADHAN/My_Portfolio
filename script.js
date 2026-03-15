@@ -1,3 +1,39 @@
+// --- Contact Form Submission ---
+const contactForm = document.getElementById("contactForm");
+const formStatus = document.getElementById("formStatus");
+
+if (contactForm) {
+    contactForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        formStatus.textContent = "Sending...";
+        const formData = new FormData(contactForm);
+        const data = {
+            name: formData.get("name"),
+            email: formData.get("email"),
+            message: formData.get("message")
+        };
+        fetch("https://my-portfolio-1-hev5.onrender.com/sendmail", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.text())
+            .then(result => {
+                if (result.trim() === "success") {
+                    formStatus.textContent = "Message sent successfully!";
+                    contactForm.reset();
+                } else {
+                    formStatus.textContent = "Failed to send message. Please try again.";
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                formStatus.textContent = "Server error. Please try again later.";
+            });
+    });
+}
 document.addEventListener('DOMContentLoaded', () => {
     // --- Typewriter Effect for Hero Subtitle ---
     const typewriterText = "I design and develop scalable digital solutions, turning complex problems into elegant, high-performance software experiences.";
