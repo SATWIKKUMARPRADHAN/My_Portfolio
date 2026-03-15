@@ -96,9 +96,10 @@
         <div class="container hero-grid">
             <div class="hero-content"><br><br>
                 <h1 class="hero-title">Satwik Kumar Pradhan</h1>
-                <p class="hero-subtitle"></p>
+                <p class="hero-subtitle">
                     <span id="typewriterText"></span>
                     <span class="typewriter-cursor">|</span>
+                </p>
                 <div class="hero-cta">
                     <a href="#projects" class="btn btn-primary">
                         View Projects <i class="fa-solid fa-arrow-right"></i>
@@ -539,7 +540,7 @@
     <script>
         // Typewriter animation for hero subtitle
         document.addEventListener('DOMContentLoaded', function () {
-            const text = "Engineering innovative cross-platform applications & full-stack solutions through scalable architecture and data-driven insights.";
+            const text = "I design and develop scalable digital solutions, turning complex problems into elegant, high-performance software experiences.";
             const typewriter = document.getElementById('typewriterText');
             const cursor = document.querySelector('.typewriter-cursor');
             let i = 0;
@@ -567,81 +568,81 @@
     </script>
     <script>
         // Resume download functionality
-    document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function () {
 
-    const resumeBtn = document.getElementById("resumeDownloadBtn");
+            const resumeBtn = document.getElementById("resumeDownloadBtn");
 
-    if (resumeBtn) {
-    resumeBtn.addEventListener("click", function (e) {
-    e.preventDefault();
+            if (resumeBtn) {
+                resumeBtn.addEventListener("click", function (e) {
+                    e.preventDefault();
 
-    const link = document.createElement("a");
-    link.href = "Satwik Kumar Pradhan 12320502 CV.pdf";
-    link.download = "Satwik_Kumar_Pradhan_CV.pdf";
+                    const link = document.createElement("a");
+                    link.href = "Satwik Kumar Pradhan 12320502 CV.pdf";
+                    link.download = "Satwik_Kumar_Pradhan_CV.pdf";
 
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    });
-    }
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                });
+            }
 
-    // Contact form submission
-    const contactForm = document.getElementById("contactForm");
-    const formStatus = document.getElementById("formStatus");
+            // Contact form submission
+            const contactForm = document.getElementById("contactForm");
+            const formStatus = document.getElementById("formStatus");
 
-    if (contactForm) {
+            if (contactForm) {
 
-    contactForm.addEventListener("submit", function (e) {
+                contactForm.addEventListener("submit", function (e) {
 
-    e.preventDefault();
+                    e.preventDefault();
 
-    formStatus.textContent = "Sending...";
+                    formStatus.textContent = "Sending...";
 
-    const formData = new FormData(contactForm);
+                    const formData = new FormData(contactForm);
 
-    const data = {
-    name: formData.get("name"),
-    email: formData.get("email"),
-    message: formData.get("message")
-    };
+                    const data = {
+                        name: formData.get("name"),
+                        email: formData.get("email"),
+                        message: formData.get("message")
+                    };
 
-    fetch("https://my-portfolio-1-hev5.onrender.com/sendmail", {
-    method: "POST",
-    headers: {
-    "Content-Type": "application/json"
-    },
-    body: JSON.stringify(data)
-    })
+                    fetch("https://my-portfolio-1-hev5.onrender.com/sendmail", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(data)
+                    })
 
-    .then(res => res.text())
+                        .then(res => res.text())
 
-    .then(result => {
+                        .then(result => {
 
-    if (result.trim() === "success") {
+                            if (result.trim() === "success") {
 
-    formStatus.textContent = "Message sent successfully!";
-    contactForm.reset();
+                                formStatus.textContent = "Message sent successfully!";
+                                contactForm.reset();
 
-    } else {
+                            } else {
 
-    formStatus.textContent = "Failed to send message. Please try again.";
+                                formStatus.textContent = "Failed to send message. Please try again.";
 
-    }
+                            }
 
-    })
+                        })
 
-    .catch(error => {
+                        .catch(error => {
 
-    console.error(error);
-    formStatus.textContent = "Server error. Please try again later.";
+                            console.error(error);
+                            formStatus.textContent = "Server error. Please try again later.";
 
-    });
+                        });
 
-    });
+                });
 
-    }
+            }
 
-    });
+        });
     </script>
 </body>
 
