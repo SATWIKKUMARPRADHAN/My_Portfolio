@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satwik Kumar Pradhan | Portfolio</title>
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <!-- Loading Page -->
+    <div id="loadingPage" class="loading-page">
+        <div class="loader-horizontal">
+            <span class="loader-text-horizontal">Initializing</span>
+            <div class="loader-bar">
+                <div class="loader-bar-inner"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Falling Stars Canvas Background -->
+    <canvas id="starfield" class="starfield"></canvas>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="customCursor"></div>
+
+    <!-- Desktop Navigation -->
+    <nav class="glass-nav reveal-elem hidden desktop-nav">
+        <div class="nav-content">
+            <span class="logo">S<span class="text-accent">K</span>P</span>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#tech">Tech Stack</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#cp">Coding</a></li>
+                <li><a href="#experience">Journey</a></li>
+                <li><a href="#certificates">Certificates</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button id="themeToggle" class="theme-toggle" aria-label="Toggle Dark/Light Mode">
+                <i class="fa-solid fa-moon dark-icon"></i>
+                <i class="fa-solid fa-sun light-icon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation Toggle & Panel -->
+    <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Open Menu">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+    <div class="mobile-nav-panel" id="mobileNavPanel">
+        <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close Menu">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="mobile-nav-content">
+            <ul class="mobile-nav-links">
+                <li><a href="#about" class="mobile-link">About</a></li>
+                <li><a href="#tech" class="mobile-link">Tech Stack</a></li>
+                <li><a href="#projects" class="mobile-link">Projects</a></li>
+                <li><a href="#cp" class="mobile-link">Coding</a></li>
+                <li><a href="#experience" class="mobile-link">Journey</a></li>
+                <li><a href="#certificates" class="mobile-link">Certificates</a></li>
+                <li><a href="#contact" class="mobile-link">Contact</a></li>
+            </ul>
+            <div class="mobile-theme-wrapper">
+                <span>Theme:</span>
+                <button id="mobileThemeToggle" class="theme-toggle" aria-label="Toggle Dark/Light Mode">
+                    <i class="fa-solid fa-moon dark-icon"></i>
+                    <i class="fa-solid fa-sun light-icon"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox-modal" id="lightboxModal">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close image">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <img src="" alt="Certificate Fullscreen" class="lightbox-img" id="lightboxImg">
+    </div>
+
+    <!-- Hero Section -->
+    <header class="hero section-container reveal-elem hidden" id="hero">
+        <div class="container hero-grid">
+            <div class="hero-content"><br><br>
+                <h1 class="hero-title">Satwik Kumar Pradhan</h1>
+                <p class="hero-subtitle">
+                    <span id="typewriterText"></span>
+                    <span class="typewriter-cursor">|</span>
+                <div class="hero-cta">
+                    <a href="#projects" class="btn btn-primary">
+                        View Projects <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="#" class="btn btn-secondary" id="resumeDownloadBtn">
+                        <i class="fa-solid fa-file-arrow-down"></i> Resume
+                    </a>
+                </div>
+                <div class="social-links">
+                    <a href="https://github.com/SATWIKKUMARPRADHAN" target="_blank" class="social-icon hover-interact"
+                        aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/satwik-4b4763284/" target="_blank"
+                        class="social-icon hover-interact" aria-label="LinkedIn"><i
+                            class="fa-brands fa-linkedin"></i></a>
+                    <a href="mailto:satwik2954kumar@gmail.com" class="social-icon hover-interact" aria-label="Email"><i
+                            class="fa-solid fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="profile-frame">
+                    <div class="profile-placeholder">
+                        <img src="Photos/profile.png" alt="Profile Photo" class="profile-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section (Centered) -->
+    <section class="about section-container reveal-elem hidden" id="about">
+        <div class="container section-header" style="text-align: center;">
+            <h2 class="section-title">About Me</h2>
+        </div>
+        <div class="container">
+            <div class="about-text full-width-card glass-card hover-interact">
+                <h3>Who I Am</h3>
+                <p>I am a highly adaptable software developer with a strong foundation in building cross-platform mobile
+                    apps, powerful web applications, and optimized data pipelines. With core soft skills in leadership,
+                    teamwork, and critical problem-solving, I aim to translate complex requirements into elegant,
+                    robust, and secure digital products.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Expertise Section -->
+    <section class="tech-stack-section section-container reveal-elem hidden" id="tech">
+        <div class="container section-header">
+            <h2 class="section-title">Technical Expertise</h2>
+            <p class="section-subtitle">A breakdown of my core languages, frameworks, and platforms.</p>
+        </div>
+        <div class="container tech-category-grid">
+
+            <!-- Languages -->
+            <div class="tech-category glass-card hover-interact">
+                <h3>Languages</h3>
+                <div class="tech-grid">
+                    <div class="tech-item brand-python"><i class="fa-brands fa-python tech-icon"></i><span>Python</span>
+                    </div>
+                    <div class="tech-item brand-react"><i class="fa-brands fa-js tech-icon"></i><span>JavaScript</span>
+                    </div>
+                    <div class="tech-item brand-docker"><i class="fa-brands fa-java tech-icon"></i><span>Java</span>
+                    </div>
+                    <div class="tech-item brand-node"><i class="fa-solid fa-c tech-icon"></i><span>C/C++</span></div>
+                </div>
+            </div>
+
+            <!-- Frameworks -->
+            <div class="tech-category glass-card hover-interact">
+                <h3>Frameworks</h3>
+                <div class="tech-grid">
+                    <div class="tech-item brand-react"><i class="fa-brands fa-react tech-icon"></i><span>React.js</span>
+                    </div>
+                    <div class="tech-item brand-python"><i
+                            class="fa-solid fa-mobile-screen tech-icon"></i><span>Flutter</span></div>
+                    <div class="tech-item brand-node"><i class="fa-brands fa-node-js tech-icon"></i><span>Node.js</span>
+                    </div>
+                    <div class="tech-item brand-aws"><i class="fa-solid fa-pepper-hot tech-icon"></i><span>Flask</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tools & Platforms -->
+            <div class="tech-category glass-card hover-interact">
+                <h3>Tools & Platforms</h3>
+                <div class="tech-grid">
+                    <div class="tech-item brand-git"><i class="fa-brands fa-git-alt tech-icon"></i><span>Git</span>
+                    </div>
+                    <div class="tech-item brand-postgres"><i class="fa-brands fa-linux tech-icon"></i><span>Linux</span>
+                    </div>
+                    <div class="tech-item brand-figma"><i class="fa-brands fa-figma tech-icon"></i><span>Figma</span>
+                    </div>
+                    <div class="tech-item brand-postgres"><i class="fa-solid fa-cube tech-icon"></i><span>AutoCAD</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Databases & Cloud -->
+            <div class="tech-category glass-card hover-interact">
+                <h3>Databases & Services</h3>
+                <div class="tech-grid">
+                    <div class="tech-item brand-node"><i class="fa-solid fa-leaf tech-icon"></i><span>MongoDB</span>
+                    </div>
+                    <div class="tech-item brand-postgres"><i class="fa-solid fa-database tech-icon"></i><span>SQL</span>
+                    </div>
+                    <div class="tech-item brand-aws"><i class="fa-solid fa-fire tech-icon"></i><span>Firebase</span>
+                    </div>
+                    <div class="tech-item brand-react"><i class="fa-brands fa-google tech-icon"></i><span>Google
+                            Analytics</span></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Projects Section (Tighter Bento Grid - 5 Card Layout) -->
+    <section class="projects section-container reveal-elem hidden" id="projects">
+        <div class="container section-header flex-between">
+            <h2 class="section-title">Selected Projects</h2>
+            <a href="https://github.com/SATWIKKUMARPRADHAN" target="_blank" class="view-all-link hover-interact">View
+                GitHub <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="container tight-bento-grid">
+
+            <!-- Card 1: Password Manager (Large) -->
+            <div class="bento-card b-large glass-card hover-lift hover-interact">
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="tag">Java</span>
+                        <span class="tag">Maven</span>
+                        <span class="tag">H2 Database</span>
+                    </div>
+                    <h3 class="project-title">Password Manager</h3>
+                    <p class="project-desc">A full-stack CRUD application allowing users to securely construct, store,
+                        and manage their passwords. Achieved a 50% reduction in password management efforts via
+                        automated workflows, and fine-tuned system performance by 35% via streamlined routing.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/SATWIKKUMARPRADHAN/password-manager" target="_blank"
+                            class="icon-link"><i class="fa-brands fa-github"></i></a>
+                        <span class="text-secondary" style="font-size: 0.8rem;">Oct 2025</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: AI Sleep Learning Companion (Tall) -->
+            <div class="bento-card b-tall glass-card hover-lift hover-interact">
+                <div class="project-content" style="height: 100%;">
+                    <div class="project-tags">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">PHP</span>
+                        <span class="tag">Python</span>
+                    </div>
+                    <h3 class="project-title">AI Sleep Learning Companion</h3>
+                    <p class="project-desc">An AI-powered sleep assistant that analyzes user data and generates
+                        personalized binaural beat sessions. Implemented optimized data pipelines to collect, process,
+                        and analyze sleep behavior.</p>
+                    <div class="project-links" style="margin-top: auto;">
+                        <a href="https://github.com/SATWIKKUMARPRADHAN/AI-CA-2-Sleep-Assistant-Chatbot" target="_blank"
+                            class="icon-link"><i class="fa-brands fa-github"></i></a>
+                        <span class="text-secondary" style="font-size: 0.8rem; margin-left: auto;">Feb 2025</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: CoffeBuck (Square 1) -->
+            <div class="bento-card b-square1 glass-card hover-lift hover-interact">
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="tag">HTML5 / CSS</span>
+                    </div>
+                    <h3 class="project-title">CoffeBuck</h3>
+                    <p class="project-desc" style="font-size: 0.85rem; line-height: 1.4;">A sleek, responsive frontend
+                        landing page for a fictional modern coffee shop experience.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/SATWIKKUMARPRADHAN/CoffeBuck" target="_blank" class="icon-link"><i
+                                class="fa-brands fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: noob_notes (Square 2) -->
+            <div class="bento-card b-square2 glass-card hover-lift hover-interact">
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="tag">Dart</span>
+                        <span class="tag">Flutter</span>
+                    </div>
+                    <h3 class="project-title">Noob Notes</h3>
+                    <p class="project-desc" style="font-size: 0.85rem; line-height: 1.4;">A cross-platform mobile
+                        note-taking application designed for simplicity and speed.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/SATWIKKUMARPRADHAN/noob_notes" target="_blank" class="icon-link"><i
+                                class="fa-brands fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5: E-Commerce Page (Wide) -->
+            <div class="bento-card b-wide glass-card hover-lift hover-interact">
+                <div class="project-content project-row">
+                    <div class="wide-text">
+                        <div class="project-tags">
+                            <span class="tag">Node.js</span>
+                            <span class="tag">Fullstack</span>
+                        </div>
+                        <h3 class="project-title">E-Commerce Architecture</h3>
+                        <p class="project-desc">A responsive full-stack e-commerce interface featuring dynamic product
+                            rendering, client-side interactive cart flows, and improved backend routing achieving a 25%
+                            reduction in page load times.</p>
+                    </div>
+                    <div class="project-links align-end" style="flex-direction: column; align-items: flex-end;">
+                        <span class="text-secondary" style="font-size: 0.8rem; margin-bottom: 8px;">Dec 2023</span>
+                        <a href="https://github.com/SATWIKKUMARPRADHAN/E-Commerce" target="_blank"
+                            class="icon-link btn-indigo-subtle"><i class="fa-brands fa-github"></i> GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Competitive Programming & Stats -->
+    <section class="cp-section section-container reveal-elem hidden" id="cp">
+        <div class="container section-header">
+            <h2 class="section-title">Coding & Achivements</h2>
+            <p class="section-subtitle">Consistent problem-solving and algorithmic understanding.</p>
+        </div>
+        <div class="container cp-grid">
+            <!-- Stats overview cards -->
+            <div class="cp-stats">
+                <div class="stat-card glass-card hover-interact">
+                    <i class="fa-solid fa-code stat-icon text-accent"></i>
+                    <h4 class="stat-num">150+</h4>
+                    <span class="stat-label">LeetCode Questions</span>
+                </div>
+                <div class="stat-card glass-card hover-interact">
+                    <i class="fa-solid fa-trophy stat-icon text-accent"></i>
+                    <h4 class="stat-num">3</h4>
+                    <span class="stat-label">Hackathons Finalist</span>
+                </div>
+                <div class="stat-card glass-card hover-interact">
+                    <i class="fa-solid fa-medal stat-icon text-accent"></i>
+                    <h4 class="stat-num">Scholar</h4>
+                    <span class="stat-label">Army Merit Scholarship</span>
+                </div>
+            </div>
+
+            <!-- Interactive Charts -->
+            <div class="cp-charts glass-card hover-interact">
+                <div class="chart-header">
+                    <h3>Problem Solving Trajectory</h3>
+                </div>
+                <div class="chart-container">
+                    <canvas id="ratingChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience / Education Timeline -->
+    <section class="timeline-section section-container reveal-elem hidden" id="experience">
+        <div class="container section-header toggle-header">
+            <h2 class="section-title">Journey</h2>
+            <div class="timeline-toggle glass-card hover-interact">
+                <button class="toggle-btn active hover-interact" data-target="work">Experience</button>
+                <button class="toggle-btn hover-interact" data-target="education">Education</button>
+            </div>
+        </div>
+
+        <div class="container timeline-container">
+            <!-- Experience -->
+            <div class="timeline work-timeline active">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card hover-lift hover-interact">
+                        <span class="timeline-date">Jun 2025 – Jul 2025</span>
+                        <h3 class="timeline-role">Summer Training: Flutter Android App Development</h3>
+                        <h4 class="timeline-company"><i class="fa-solid fa-building"></i> Cipher School</h4>
+                        <p>Engineered cross-platform mobile applications adhering to component-based UI architecture.
+                            Designed a note-sheet module boosting responsiveness by 30% via state management, and
+                            integrated an SQLite database for real-time local storage.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div class="timeline education-timeline hidden">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card hover-lift hover-interact">
+                        <span class="timeline-date">Since Aug 2023</span>
+                        <h3 class="timeline-role">Bachelor of Technology - Computer Science and Engineering</h3>
+                        <h4 class="timeline-company"><i class="fa-solid fa-graduation-cap"></i> Lovely Professional
+                            University</h4>
+                        <p>Currently pursuing B.Tech in CSE at Phagwara, Punjab with a CGPA of 8.45.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card hover-lift hover-interact">
+                        <span class="timeline-date">Apr 2020 – Mar 2022</span>
+                        <h3 class="timeline-role">Intermediate</h3>
+                        <h4 class="timeline-company"><i class="fa-solid fa-school"></i> Kendriya Vidyalaya Bolarum</h4>
+                        <p>Yapral, Secunderabad. Graduated with a Percentage of 80%.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card hover-lift hover-interact">
+                        <span class="timeline-date">Apr 2019 – Mar 2020</span>
+                        <h3 class="timeline-role">Matriculation</h3>
+                        <h4 class="timeline-company"><i class="fa-solid fa-school"></i> Kendriya Vidyalaya Bolarum</h4>
+                        <p>Yapral, Secunderabad. Graduated with a Percentage of 87%.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Image Carousel (Lightbox triggers) -->
+    <section class="certificates-section section-container reveal-elem hidden" id="certificates">
+        <div class="container section-header">
+            <h2 class="section-title">Certifications</h2>
+            <p class="section-subtitle">Drag to scroll. Click to view full image.</p>
+        </div>
+
+        <div class="cert-carousel-wrapper">
+            <div class="container padding-hack">
+                <div class="cert-carousel" id="certCarousel">
+
+                    <div class="cert-card-img hover-lift hover-interact"
+                        data-img-src="NPTEL.png"
+                        style="background-image: url('NPTEL.png');">
+                        <div class="cert-overlay">
+                            <h3 class="cert-title">Cloud Computing</h3>
+                            <p class="cert-issuer">NPTEL (IIT Kharagpur)</p>
+                            <span class="cert-year">Nov 2025</span>
+                        </div>
+                    </div>
+                    <div class="cert-card-img hover-lift hover-interact"
+                        data-img-src="CipherSchool.png"
+                        style="background-image: url('CipherSchool.png');">
+                        <div class="cert-overlay">
+                            <h3 class="cert-title">Flutter: Android App Development</h3>
+                            <p class="cert-issuer">CipherSchool</p>
+                            <span class="cert-year">Aug 2025</span>
+                        </div>
+                    </div>
+                    <div class="cert-card-img hover-lift hover-interact"
+                        data-img-src="DSA.png"
+                        style="background-image: url('DSA.png');">
+                        <div class="cert-overlay">
+                            <h3 class="cert-title">DSA</h3>
+                            <p class="cert-issuer">NeoColab</p>
+                            <span class="cert-year">Dec 2024</span>
+                        </div>
+                    </div>
+                    <div class="cert-card-img hover-lift hover-interact"
+                        data-img-src="C++.png"
+                        style="background-image: url('C++.png');">
+                        <div class="cert-overlay">
+                            <h3 class="cert-title">C++</h3>
+                            <p class="cert-issuer">NeoColab</p>
+                            <span class="cert-year">Dec 2024</span>
+                        </div>
+                    </div>
+                    <div class="cert-card-img hover-lift hover-interact"
+                        data-img-src="Flask.png"
+                        style="background-image: url('Flask.png');">
+                        <div class="cert-overlay">
+                            <h3 class="cert-title">Flask Development</h3>
+                            <p class="cert-issuer">Udemy</p>
+                            <span class="cert-year">Feb 2024</span>
+                        </div>
+                    </div>
+                    <div class="cert-card-img hover-lift hover-interact" 
+                        data-img-src="Code-A-Hunt.png"
+                        style="background-image: url('Code-A-Hunt.png');">
+                        <div class="cert-overlay">
+                            <h3 class="cert-title">Code-A-Hunt</h3>
+                            <p class="cert-issuer">Coding Blocks</p>
+                            <span class="cert-year">Feb 2024</span>
+                        </div>
+                    </div>
+                    <div class="cert-card-img hover-lift hover-interact"
+                        data-img-src="FreeCodeCamp.png"
+                        style="background-image: url('FreeCodeCamp.png');">
+                        <div class="cert-overlay">
+                            <h3 class="cert-title">Web Design</h3>
+                            <p class="cert-issuer">FreeCodeCamp</p>
+                            <span class="cert-year">Oct 2023</span>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact section-container reveal-elem hidden" id="contact">
+        <div class="container section-header" style="text-align: center;">
+            <h2 class="section-title">Get In Touch</h2><br><br>
+            <p class="section-subtitle contact-subtitle">Feel free to reach out via email or connect on LinkedIn. I'll
+                do my best to get back to you!</p>
+        </div>
+        <div class="container contact-container">
+            <form class="contact-form glass-card hover-interact" id="contactForm" action="/sendmail" method="post"
+                enctype="application/x-www-form-urlencoded">
+                <div class="form-group flex-group">
+                    <div class="input-wrapper hover-interact">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your name">
+                    </div>
+                    <div class="input-wrapper hover-interact">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="Enter your mail">
+                    </div>
+                </div>
+                <div class="form-group hover-interact">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required placeholder="Type your message"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary submit-btn hover-interact">
+                    <span>Send Message</span>
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+                <div id="formStatus" style="margin-top:1rem;font-weight:500;"></div>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="thank-you">Satwik Kumar Pradhan <i class="fa-solid fa-heart text-accent"
+                    style="font-size: 0.8rem;"></i></p>
+            <p class="copyright">&copy; 2024. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Typewriter animation for hero subtitle
+        document.addEventListener('DOMContentLoaded', function () {
+            const text = "Engineering innovative cross-platform applications & full-stack solutions through scalable architecture and data-driven insights.";
+            const typewriter = document.getElementById('typewriterText');
+            const cursor = document.querySelector('.typewriter-cursor');
+            let i = 0;
+            function type() {
+                if (i <= text.length) {
+                    typewriter.textContent = text.slice(0, i);
+                    i++;
+                    setTimeout(type, 32);
+                } else {
+                    cursor.style.opacity = 0;
+                }
+            }
+            type();
+        });
+    </script>
+    <script>
+        // Loading animation logic
+        document.addEventListener('DOMContentLoaded', function () {
+            const loadingPage = document.getElementById('loadingPage');
+            setTimeout(() => {
+                loadingPage.style.opacity = 0;
+                setTimeout(() => loadingPage.style.display = 'none', 600);
+            }, 1800);
+        });
+    </script>
+    <script>
+        // Resume download functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const resumeBtn = document.getElementById('resumeDownloadBtn');
+            if (resumeBtn) {
+                resumeBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const link = document.createElement('a');
+                    link.href = 'Satwik Kumar Pradhan 12320502 CV.pdf';
+                    link.download = 'Satwik_Kumar_Pradhan_CV.pdf';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                });
+            }
+
+            // Contact form AJAX (Node.js backend)
+            const contactForm = document.getElementById('contactForm');
+            const formStatus = document.getElementById('formStatus');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    formStatus.textContent = 'Sending...';
+                    const formData = new FormData(contactForm);
+                    const data = {
+                        name: formData.get('name'),
+                        email: formData.get('email'),
+                        message: formData.get('message')
+                    };
+                    fetch('http://localhost:3000/sendmail', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                        .then(response => response.text())
+                        .then(result => {
+                            if (result.trim() === 'success') {
+                                formStatus.textContent = 'Message sent successfully!';
+                                contactForm.reset();
+                            } else {
+                                formStatus.textContent = 'Failed to send message. Please try again later.';
+                            }
+                        })
+                        .catch(() => {
+                            formStatus.textContent = 'Failed to send message. Please try again later.';
+                        });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

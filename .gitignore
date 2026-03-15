@@ -1,0 +1,52 @@
+# Node.js dependencies
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs
+dist/
+build/
+
+# Environment files
+.env
+.env.local
+.env.*
+
+# VS Code
+.vscode/
+
+# Misc
+*.swp
+*.swo
+
+# Ignore PDF resume if not meant for public
+Satwik Kumar Pradhan 12320502 CV.pdf
+
+# Ignore images if not meant for public
+# images/
+
+# Ignore Python/other virtual environments
+venv/
+__pycache__/
+
+# Ignore coverage
+coverage/
+
+# Ignore Jupyter notebooks
+*.ipynb
+
+# Ignore package-lock if not needed
+package-lock.json
+
+# Ignore any temp files
+*.tmp
+*.bak
