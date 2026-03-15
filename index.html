@@ -432,8 +432,7 @@
             <div class="container padding-hack">
                 <div class="cert-carousel" id="certCarousel">
 
-                    <div class="cert-card-img hover-lift hover-interact"
-                        data-img-src="NPTEL.png"
+                    <div class="cert-card-img hover-lift hover-interact" data-img-src="NPTEL.png"
                         style="background-image: url('NPTEL.png');">
                         <div class="cert-overlay">
                             <h3 class="cert-title">Cloud Computing</h3>
@@ -441,8 +440,7 @@
                             <span class="cert-year">Nov 2025</span>
                         </div>
                     </div>
-                    <div class="cert-card-img hover-lift hover-interact"
-                        data-img-src="CipherSchool.png"
+                    <div class="cert-card-img hover-lift hover-interact" data-img-src="CipherSchool.png"
                         style="background-image: url('CipherSchool.png');">
                         <div class="cert-overlay">
                             <h3 class="cert-title">Flutter: Android App Development</h3>
@@ -450,8 +448,7 @@
                             <span class="cert-year">Aug 2025</span>
                         </div>
                     </div>
-                    <div class="cert-card-img hover-lift hover-interact"
-                        data-img-src="DSA.png"
+                    <div class="cert-card-img hover-lift hover-interact" data-img-src="DSA.png"
                         style="background-image: url('DSA.png');">
                         <div class="cert-overlay">
                             <h3 class="cert-title">DSA</h3>
@@ -459,8 +456,7 @@
                             <span class="cert-year">Dec 2024</span>
                         </div>
                     </div>
-                    <div class="cert-card-img hover-lift hover-interact"
-                        data-img-src="C++.png"
+                    <div class="cert-card-img hover-lift hover-interact" data-img-src="C++.png"
                         style="background-image: url('C++.png');">
                         <div class="cert-overlay">
                             <h3 class="cert-title">C++</h3>
@@ -468,8 +464,7 @@
                             <span class="cert-year">Dec 2024</span>
                         </div>
                     </div>
-                    <div class="cert-card-img hover-lift hover-interact"
-                        data-img-src="Flask.png"
+                    <div class="cert-card-img hover-lift hover-interact" data-img-src="Flask.png"
                         style="background-image: url('Flask.png');">
                         <div class="cert-overlay">
                             <h3 class="cert-title">Flask Development</h3>
@@ -477,8 +472,7 @@
                             <span class="cert-year">Feb 2024</span>
                         </div>
                     </div>
-                    <div class="cert-card-img hover-lift hover-interact" 
-                        data-img-src="Code-A-Hunt.png"
+                    <div class="cert-card-img hover-lift hover-interact" data-img-src="Code-A-Hunt.png"
                         style="background-image: url('Code-A-Hunt.png');">
                         <div class="cert-overlay">
                             <h3 class="cert-title">Code-A-Hunt</h3>
@@ -486,8 +480,7 @@
                             <span class="cert-year">Feb 2024</span>
                         </div>
                     </div>
-                    <div class="cert-card-img hover-lift hover-interact"
-                        data-img-src="FreeCodeCamp.png"
+                    <div class="cert-card-img hover-lift hover-interact" data-img-src="FreeCodeCamp.png"
                         style="background-image: url('FreeCodeCamp.png');">
                         <div class="cert-overlay">
                             <h3 class="cert-title">Web Design</h3>
@@ -495,7 +488,7 @@
                             <span class="cert-year">Oct 2023</span>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -572,58 +565,82 @@
             }, 1800);
         });
     </script>
-    <script>
-        // Resume download functionality
-        document.addEventListener('DOMContentLoaded', function () {
-            const resumeBtn = document.getElementById('resumeDownloadBtn');
-            if (resumeBtn) {
-                resumeBtn.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const link = document.createElement('a');
-                    link.href = 'Satwik Kumar Pradhan 12320502 CV.pdf';
-                    link.download = 'Satwik_Kumar_Pradhan_CV.pdf';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                });
-            }
+    // Resume download functionality
+    document.addEventListener("DOMContentLoaded", function () {
 
-            // Contact form AJAX (Node.js backend)
-            const contactForm = document.getElementById('contactForm');
-            const formStatus = document.getElementById('formStatus');
-            if (contactForm) {
-                contactForm.addEventListener('submit', function (e) {
-                    e.preventDefault();
-                    formStatus.textContent = 'Sending...';
-                    const formData = new FormData(contactForm);
-                    const data = {
-                        name: formData.get('name'),
-                        email: formData.get('email'),
-                        message: formData.get('message')
-                    };
-                    fetch('http://localhost:3000/sendmail', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(data)
-                    })
-                        .then(response => response.text())
-                        .then(result => {
-                            if (result.trim() === 'success') {
-                                formStatus.textContent = 'Message sent successfully!';
-                                contactForm.reset();
-                            } else {
-                                formStatus.textContent = 'Failed to send message. Please try again later.';
-                            }
-                        })
-                        .catch(() => {
-                            formStatus.textContent = 'Failed to send message. Please try again later.';
-                        });
-                });
-            }
-        });
-    </script>
+    const resumeBtn = document.getElementById("resumeDownloadBtn");
+
+    if (resumeBtn) {
+    resumeBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const link = document.createElement("a");
+    link.href = "Satwik Kumar Pradhan 12320502 CV.pdf";
+    link.download = "Satwik_Kumar_Pradhan_CV.pdf";
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    });
+    }
+
+    // Contact form submission
+    const contactForm = document.getElementById("contactForm");
+    const formStatus = document.getElementById("formStatus");
+
+    if (contactForm) {
+
+    contactForm.addEventListener("submit", function (e) {
+
+    e.preventDefault();
+
+    formStatus.textContent = "Sending...";
+
+    const formData = new FormData(contactForm);
+
+    const data = {
+    name: formData.get("name"),
+    email: formData.get("email"),
+    message: formData.get("message")
+    };
+
+    fetch("https://my-portfolio-1-hev5.onrender.com/sendmail", {
+    method: "POST",
+    headers: {
+    "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+    })
+
+    .then(res => res.text())
+
+    .then(result => {
+
+    if (result.trim() === "success") {
+
+    formStatus.textContent = "Message sent successfully!";
+    contactForm.reset();
+
+    } else {
+
+    formStatus.textContent = "Failed to send message. Please try again.";
+
+    }
+
+    })
+
+    .catch(error => {
+
+    console.error(error);
+    formStatus.textContent = "Server error. Please try again later.";
+
+    });
+
+    });
+
+    }
+
+    });
 </body>
 
 </html>
