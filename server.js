@@ -10,39 +10,53 @@ app.use(cors());
 app.use(express.json());
 
 app.post("/sendmail", async (req, res) => {
+
     const { name, email, message } = req.body;
+
+    console.log("Incoming request:", req.body);
 
     if (!name || !email || !message) {
         return res.status(400).send("error");
     }
 
     try {
+
         const transporter = nodemailer.createTransport({
             host: "smtp.gmail.com",
-            port: 465,
-            secure: true,
+            port: 587,
+            secure: false,
             auth: {
                 user: process.env.EMAIL_USER,
                 pass: process.env.EMAIL_PASS
             },
-            connectionTimeout: 10000
+            tls: {
+                rejectUnauthorized: false
+            }
         });
 
-        const mailOptions = {
+        await transporter.verify();
+        console.log("SMTP server ready");
+
+        await transporter.sendMail({
             from: process.env.EMAIL_USER,
             to: process.env.EMAIL_USER,
             replyTo: email,
-            subject: "Portfolio Contact Message",
+            subject: `Portfolio Message from ${name}`,
             text: `Name: ${name}\nEmail: ${email}\nMessage:\n${message}`
-        };
+        });
 
-        await transporter.sendMail(mailOptions);
+        console.log("Email sent successfully");
 
         res.send("success");
+
     } catch (error) {
-        console.log(error);
+
+        console.error("Mail error:", error);
+
         res.status(500).send("error");
+
     }
+
 });
 
 app.listen(PORT, () => {
