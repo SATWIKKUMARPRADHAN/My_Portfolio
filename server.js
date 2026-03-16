@@ -3,7 +3,7 @@ const cors = require("cors");
 const { Resend } = require("resend");
 
 const app = express();
-const resend = new Resend("re_Cjg6cvsq_CTN388virsJwqutwYHEWBHKH");
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const PORT = process.env.PORT || 3000;
 
@@ -18,7 +18,7 @@ app.post("/sendmail", async (req, res) => {
 
         await resend.emails.send({
             from: "Portfolio <onboarding@resend.dev>",
-            to: "satwik2954kumar@gmail.com",
+            to: process.env.EMAIL_USER,
             subject: `Portfolio Message from ${name}`,
             text: `Name: ${name}\nEmail: ${email}\nMessage:\n${message}`
         });
