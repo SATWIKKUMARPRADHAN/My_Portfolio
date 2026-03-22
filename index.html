@@ -567,30 +567,6 @@
             }, 1800);
         });
     </script>
-    <script>
-        // Resume download functionality
-        document.addEventListener("DOMContentLoaded", function () {
-
-            const resumeBtn = document.getElementById("resumeDownloadBtn");
-
-            if (resumeBtn) {
-                resumeBtn.addEventListener("click", function (e) {
-                    e.preventDefault();
-
-                    const link = document.createElement("a");
-                    link.href = "Satwik Kumar Pradhan 12320502 CV.pdf";
-                    link.download = "Satwik_Kumar_Pradhan_CV.pdf";
-
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                });
-            }
-
-            // ...existing code...
-
-        });
-    </script>
 </body>
 
 </html>
