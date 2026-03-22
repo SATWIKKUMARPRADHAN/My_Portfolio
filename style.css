@@ -83,6 +83,9 @@
     --brand-git: #f05032;
     --brand-figma: #f24e1e;
     --brand-postgres: #336791;
+    --brand-javascript: #f7df1e;
+    --brand-flutter: #1c91ff;
+    --brand-autocad: #ff0037;
 }
 
 /* --- THEME TOKENS --- */
@@ -484,8 +487,8 @@ body.has-mouse .custom-cursor {
 .mobile-nav-toggle {
     display: none;
     position: fixed;
-    top: var(--space-4);
-    right: var(--space-4);
+    top: var(--space-2);
+    right: var(--space-1);
     z-index: 1001;
     background: var(--surface-color);
     backdrop-filter: blur(12px);
@@ -910,6 +913,18 @@ body.has-mouse .custom-cursor {
 
 .brand-postgres:hover .tech-icon {
     color: var(--brand-postgres);
+}
+
+.brand-javascript:hover .tech-icon {
+    color: var(--brand-javascript);
+}
+
+.brand-flutter:hover .tech-icon {
+    color: var(--brand-flutter);
+}
+
+.brand-autocad:hover .tech-icon {
+    color: var(--brand-autocad);
 }
 
 .tech-item:hover span {
@@ -1552,6 +1567,9 @@ textarea:focus {
 
 /* --- RESPONSIVENESS (Media Queries) --- */
 @media (max-width: 1024px) {
+    .hero-subtitle {
+        max-width: 100%;
+    }
 
     /* Collapse Bento from 3 cols to 2 cols */
     .tight-bento-grid {
@@ -1679,6 +1697,19 @@ textarea:focus {
         display: none !important;
     }
 }
+
+@media (max-width: 768px) {
+    .toggle-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .timeline-toggle {
+        align-self: center;
+    }
+}
+
 
 /* Stagger List (Vertical Content) */
 .stagger-list>.stagger-item {

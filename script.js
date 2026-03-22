@@ -180,33 +180,78 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = document.getElementById('ratingChart');
     if (ctx && typeof Chart !== 'undefined') {
         const labels = ['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'];
-        const data = [1200, 1350, 1320, 1500, 1680, 1750, 1920];
-
-        const getGridColor = () => htmlElement.getAttribute('data-theme') === 'dark' ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)';
-        const getTextColor = () => htmlElement.getAttribute('data-theme') === 'dark' ? '#9ca3af' : '#4b5563';
-
+        const data = [10, 35, 55, 85, 137, 155]; // cumulative questions solved
+        const getGridColor = () =>
+            htmlElement.getAttribute('data-theme') === 'dark'
+                ? 'rgba(255,255,255,0.05)'
+                : 'rgba(0,0,0,0.05)';
+        const getTextColor = () =>
+            htmlElement.getAttribute('data-theme') === 'dark'
+                ? '#9ca3af'
+                : '#4b5563';
         window.myChart = new Chart(ctx, {
             type: 'line',
             data: {
                 labels: labels,
                 datasets: [{
-                    label: 'Rating', data: data,
-                    borderColor: '#4f46e5', backgroundColor: 'rgba(79, 70, 229, 0.1)',
-                    borderWidth: 2, pointBackgroundColor: '#4f46e5', pointBorderColor: '#fff',
-                    pointRadius: 4, pointHoverRadius: 6, fill: true, tension: 0.4
+                    label: 'Questions Solved',
+                    data: data,
+                    borderColor: '#4f46e5',
+                    backgroundColor: 'rgba(79, 70, 229, 0.1)',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#4f46e5',
+                    pointBorderColor: '#fff',
+                    pointRadius: 4,
+                    pointHoverRadius: 6,
+                    fill: true,
+                    tension: 0.4
                 }]
             },
             options: {
-                responsive: true, maintainAspectRatio: false,
-                plugins: { legend: { display: false }, tooltip: { backgroundColor: 'rgba(0,0,0,0.8)', titleFont: { family: 'Inter', size: 13 }, bodyFont: { family: 'Inter', size: 13 }, padding: 10, displayColors: false } },
-                scales: { x: { grid: { display: false, drawBorder: false }, ticks: { color: getTextColor(), font: { family: 'Inter' } } }, y: { grid: { color: getGridColor(), drawBorder: false }, ticks: { color: getTextColor(), font: { family: 'Inter' }, stepSize: 200 } } },
-                interaction: { intersect: false, mode: 'index' },
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: 'rgba(0,0,0,0.8)',
+                        titleFont: { family: 'Inter', size: 13 },
+                        bodyFont: { family: 'Inter', size: 13 },
+                        padding: 10,
+                        displayColors: false,
+                        callbacks: {
+                            label: function (context) {
+                                return `Solved: ${context.raw} questions`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false, drawBorder: false },
+                        ticks: { color: getTextColor(), font: { family: 'Inter' } }
+                    },
+                    y: {
+                        grid: { color: getGridColor(), drawBorder: false },
+                        ticks: {
+                            color: getTextColor(),
+                            font: { family: 'Inter' },
+                            stepSize: 25
+                        },
+                        beginAtZero: true
+                    }
+                },
+                interaction: { intersect: false, mode: 'index' }
             }
         });
-
         window.updateChartTheme = function (theme) {
-            const gridColor = theme === 'dark' ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)';
-            const textColor = theme === 'dark' ? '#9ca3af' : '#4b5563';
+            const gridColor = theme === 'dark'
+                ? 'rgba(255,255,255,0.05)'
+                : 'rgba(0,0,0,0.05)';
+
+            const textColor = theme === 'dark'
+                ? '#9ca3af'
+                : '#4b5563';
+
             window.myChart.options.scales.x.ticks.color = textColor;
             window.myChart.options.scales.y.ticks.color = textColor;
             window.myChart.options.scales.y.grid.color = gridColor;
